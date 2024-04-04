@@ -9,11 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cloudinary": "^2.1.0",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.0",
     "next": "14.1.0",
+    "next-auth": "^4.24.7",
+    "node-core-lib": "^0.11.11",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "smalloc": "^0.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
