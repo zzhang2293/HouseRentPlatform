@@ -3,13 +3,13 @@ import { useState } from "react";
 
 const PropertyAddForm = () => {
   const [fields, setFields] = useState({
-    type: "Apartment",
-    name: "Test Property",
+    type: "",
+    name: "",
     description: "",
     location: {
       street: "",
-      city: "test city",
-      state: "test state",
+      city: "",
+      state: "",
       zipcode: "",
     },
     beds: "3",

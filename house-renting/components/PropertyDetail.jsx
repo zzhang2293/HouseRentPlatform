@@ -6,7 +6,7 @@ import {
   FaTimes,
   FaMapMarker,
 } from "react-icons/fa";
-import { FaT } from "react-icons/fa6";
+import PropertyMap from "@/components/PropertyMap";
 const PropertyDetail = ({ property }) => {
   return (
     <main>
@@ -75,9 +75,6 @@ const PropertyDetail = ({ property }) => {
             <span className="hidden sm:inline">sqft</span>
           </p>
         </div>
-        <p className="text-gray-500 mb-4">
-          This is a beautiful apartment located near the commons
-        </p>
         <p className="text-gray-500 mb-4">{property.description}</p>
       </div>
 
@@ -94,7 +91,7 @@ const PropertyDetail = ({ property }) => {
         </ul>
       </div>
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-        <div id="map"></div>
+        <PropertyMap property={property} />
       </div>
     </main>
   );
