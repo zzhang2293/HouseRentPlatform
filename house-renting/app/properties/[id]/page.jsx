@@ -29,7 +29,7 @@ const PropertyPage = () => {
       }
     };
     if (property === null) {
-      fetchPropertyData();
+      fetchPropertyData().then();
     }
   }, [id, property]);
   if (!property && !loading) {

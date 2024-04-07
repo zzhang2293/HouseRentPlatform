@@ -7,8 +7,16 @@ import cloudinary from "@/config/cloudinary";
 export const GET = async (request) => {
   try {
     await connectDB();
-    const properties = await Property.find({});
-    return new Response(JSON.stringify({ properties }), {
+    const page = request.nextUrl.searchParams.get("page") || 1;
+    const pageSize = request.nextUrl.searchParams.get("pageSize") || 6;
+    const skip = (page - 1) * pageSize;
+    const total = await Property.countDocuments({});
+    const properties = await Property.find({}).skip(skip).limit(pageSize);
+    const result = {
+      total,
+      properties,
+    };
+    return new Response(JSON.stringify(result), {
       status: 200,
     });
   } catch (error) {
@@ -36,7 +44,7 @@ export const POST = async (request) => {
       name: formData.get("name"),
       description: formData.get("description"),
       location: {
-        address: formData.get("location.street"),
+        street: formData.get("location.street"),
         city: formData.get("location.city"),
         state: formData.get("location.state"),
         zipcode: formData.get("location.zipcode"),
@@ -81,9 +89,6 @@ export const POST = async (request) => {
     return Response.redirect(
       `${process.env.NEXTAUTH_URL}/properties/${newProperty._id}`,
     );
-    // return new Response(JSON.stringify({ message: "success" }), {
-    //   status: 200,
-    // });
   } catch (error) {
     console.log(error);
     return new Response("something might wrong", { status: 500 });
